@@ -8,6 +8,7 @@ import Playground from "@/pages/playground.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+
       <BrowserRouter>
           <Routes>
               <Route path={'/'} element={<App />} />
