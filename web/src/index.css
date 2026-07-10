@@ -7,33 +7,40 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============ TEMA CLARO ============ */
-/* https://coolors.co/3daabb-4ecdc4-91bc85-ffd36e-ff6b6b-f7fff7-fdfffd-e7efe7 */
+/* https://coolors.co/3daabb-4ecdc4-80b472-efc551-ff6b6b-f7fff7-eff7ef-e7efe7 */
 :root {
-  --background: oklch(0.9918 0.0134 145.47);
+  --background: oklch(0.9679 0.0135 145.47);
   --foreground: oklch(0 0 0);
+  --color-foreground: oklch(0.9918 0.0134 145.47);
   --border: oklch(0.732 0 0);
 
   /* Tiempos */
   --today-dark: oklch(0.6835 0.0996 209.7);
-  --today: oklch(0.7762 0.1116 188.54);
-  --week: oklch(0.8364 0.103 139.02);
-  --month: oklch(0.8948 0.1319 89.37);
+  --today-dark-foreground: var(--color-foreground);
+  --today: oklch(0.765 0.1047 189.73);
+  --today-foreground: var(--color-foreground);
+  --week: oklch(0.7181 0.112 139.02);
+  --week-foreground: var(--color-foreground);
+  --month: oklch(0.8392 0.1399 88.92);
+  --month-foreground: var(--color-foreground);
   --overdue: oklch(0.7116 0.1812 22.84);
+  --overdue-foreground: var(--color-foreground);
 
   /* Branding */
   --primary: var(--today-dark);
-  --primary-foreground: var(--background);
+  --primary-foreground: var(--today-dark-foreground);
   --secondary: var(--week);
-  --secondary-foreground: var(--foreground);
+  --secondary-foreground: var(--week-foreground);
   --muted: oklch(0.9439 0.0136 145.47);
   --muted-foreground: var(--foreground);
   --accent: var(--today);
-  --accent-foreground: var(--foreground);
+  --accent-foreground: var(--today-foreground);
 
   --destructive: var(--overdue);
+  --destructive-foreground: var(--overdue-foreground);
 
   /* Componentes */
-  --card: oklch(0.9979 0.0034 145.55);
+  --card: oklch(0.9918 0.0134 145.47);
   --card-foreground: var(--foreground);
   --input: var(--border);
   --ring: var(--accent);
@@ -42,30 +49,36 @@
 }
 
 /* ============ TEMA OSCURO ============ */
-/* https://coolors.co/3595a4-64c8c3-8cd282-e6cd5a-e15f4b-1d211f-242926-3b413e */
+/* https://coolors.co/3daabb-4ecdc4-7fb570-efc551-ff6b6b-1d211f-242926-3b413e */
 .dark {
   --background: oklch(0.16 0.012 145);
   --foreground: oklch(0.97 0 0);
   --border: var(--muted);
 
   /* Tiempos */
-  --today-dark: oklch(0.62 0.09 209.84);
-  --today: oklch(0.75 0.12 188.54);
-  --week: oklch(0.80 0.11 139.02);
-  --month: oklch(0.8709 0.1371 86.46);
-  --overdue: oklch(0.66 0.185 22.84);
+  --today-dark: oklch(0.6835 0.0996 209.7);
+  --today-dark-foreground: var(--foreground);
+  --today: oklch(0.765 0.1047 189.73);
+  --today-foreground: var(--foreground);
+  --week: oklch(0.7181 0.112 139.02);
+  --week-foreground: var(--foreground);
+  --month: oklch(0.8392 0.1399 88.92);
+  --month-foreground: var(--foreground);
+  --overdue: oklch(0.7116 0.1812 22.84);
+  --overdue-foreground: var(--foreground);
 
   /* Branding */
   --primary: var(--today-dark);
-  --primary-foreground: var(--foreground);
+  --primary-foreground: var(--today-dark-foreground);
   --secondary: var(--week);
-  --secondary-foreground: var(--background);
+  --secondary-foreground: var(--week-foreground);
   --muted: oklch(0.3686 0.0095 164.45);
   --muted-foreground: var(--foreground);
   --accent: var(--today);
-  --accent-foreground: var(--background);
+  --accent-foreground: var(--today-foreground);
 
   --destructive: var(--overdue);
+  --destructive-foreground: var(--overdue-foreground);
 
   /* Componentes */
   --card: oklch(0.2748 0.009 159.46);
@@ -84,10 +97,15 @@
   --color-border: var(--border);
 
   --color-today-dark: var(--today-dark);
+  --color-today-dark-foreground: var(--today-dark-foreground);
   --color-today: var(--today);
+  --color-today-foreground: var(--today-foreground);
   --color-week: var(--week);
+  --color-week-foreground: var(--week-foreground);
   --color-month: var(--month);
+  --color-month-foreground: var(--month-foreground);
   --color-overdue: var(--overdue);
+  --color-overdue-foreground: var(--overdue-foreground);
 
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
@@ -99,6 +117,7 @@
   --color-accent-foreground: var(--accent-foreground);
 
   --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
 
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);

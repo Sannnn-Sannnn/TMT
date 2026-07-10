@@ -7,7 +7,7 @@ export default function Header() {
 
     return (
         <div className="flex items-center justify-between pl-10 pr-10 h-1/14 w-screen bg-primary">
-            <div className={"font-heading text-primary-foreground text-4xl"}>
+            <div className={"font-heading font-medium text-primary-foreground text-4xl"}>
                 TMT
             </div>
             <div onClick={toggle}>
