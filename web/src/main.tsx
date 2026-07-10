@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
-import Dashboard from "./dashboard/Dashboard.tsx";
+import Dashboard from "@/pages/Dashboard.tsx";
+import Playground from "@/pages/playground.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -11,6 +12,7 @@ createRoot(document.getElementById('root')!).render(
           <Routes>
               <Route path={'/'} element={<App />} />
               <Route path={'/vite'} element={<App />} />
+              <Route path={'/playground'} element={<Playground />} />
               <Route path={'/dashboard'} element={<Dashboard />} />
           </Routes>
       </BrowserRouter>
