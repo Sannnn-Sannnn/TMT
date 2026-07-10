@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
 import Dashboard from "@/pages/Dashboard.tsx";
-import Playground from "@/pages/playground.tsx";
+import Playground from "@/pages/Playground.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
