@@ -7,17 +7,17 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============ TEMA CLARO ============ */
-/* https://coolors.co/1a535c-4ecdc4-a7da99-ffe66d-ff6b6b-f7fff7-fdfffd-e7efe7 */
+/* https://coolors.co/3daabb-4ecdc4-91bc85-ffd36e-ff6b6b-f7fff7-fdfffd-e7efe7 */
 :root {
   --background: oklch(0.9918 0.0134 145.47);
   --foreground: oklch(0 0 0);
-  --border: oklch(0.898 0 0);
+  --border: oklch(0.732 0 0);
 
   /* Tiempos */
   --today-dark: oklch(0.6835 0.0996 209.7);
   --today: oklch(0.7762 0.1116 188.54);
   --week: oklch(0.8364 0.103 139.02);
-  --month: oklch(0.9224 0.1427 97.78);
+  --month: oklch(0.8948 0.1319 89.37);
   --overdue: oklch(0.7116 0.1812 22.84);
 
   /* Branding */
@@ -42,17 +42,17 @@
 }
 
 /* ============ TEMA OSCURO ============ */
-/* https://coolors.co/5a9bb2-64c8c3-8cd282-e6cd5a-e15f4b-1d211f-242926-3b413e */
+/* https://coolors.co/3595a4-64c8c3-8cd282-e6cd5a-e15f4b-1d211f-242926-3b413e */
 .dark {
   --background: oklch(0.16 0.012 145);
   --foreground: oklch(0.97 0 0);
-  --border: oklch(1 0 0);
+  --border: var(--muted);
 
   /* Tiempos */
   --today-dark: oklch(0.62 0.09 209.84);
   --today: oklch(0.75 0.12 188.54);
   --week: oklch(0.80 0.11 139.02);
-  --month: oklch(0.85 0.135 97.78);
+  --month: oklch(0.8709 0.1371 86.46);
   --overdue: oklch(0.66 0.185 22.84);
 
   /* Branding */
@@ -68,7 +68,7 @@
   --destructive: var(--overdue);
 
   /* Componentes */
-  --card: oklch(0.20 0.012 145);
+  --card: oklch(0.2748 0.009 159.46);
   --card-foreground: var(--foreground);
   --input: var(--border);
   --ring: var(--accent);
