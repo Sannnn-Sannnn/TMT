@@ -83,7 +83,7 @@ export default function TimerCard() {
             </div>
 
             { /* Configuration */}
-            <div className="flex flex-col gap-y-7 p-6">
+            <div className="flex flex-col gap-y-7 px-6 pt-6">
 
                 <div className={"flex flex-col gap-y-3"}>
                     <div className="w-3/5 bg-primary text-primary-foreground p-1 pl-2 ">
@@ -124,22 +124,24 @@ export default function TimerCard() {
 
                 <div className={"text-xl"}>
                     { autoStart ? (
-                        <div className={"flex items-center gap-x-3"}>
-                            <div className="aspect-square h-6 bg-primary" onClick={() => setAutoStart(false)} />
-                            Disable auto-start
+                        <div className={"flex items-center gap-x-2"}>
+                            <div className="flex items-center justify-center aspect-square h-6 border-3 border-primary" onClick={() => setAutoStart(false)}>
+                                <div className="flex flex-1 aspect-square bg-primary border-3 border-card" />
+                            </div>
+                            Auto-start ON
                         </div>
                     ) : (
-                        <div className={"flex items-center gap-x-3"}>
+                        <div className={"flex items-center gap-x-2"}>
                             <div className="aspect-square h-6 border-3 border-border" onClick={() => setAutoStart(true)} />
-                            Enable auto-start
+                            Auto-start OFF
                         </div>
                     )}
                 </div>
             </div>
 
             { /* Info */}
-            <div className="flex flex-col px-6">
-                <div className={"flex flex-row justify-between bg-muted p-3 font-body text-xl"}>
+            <div className="flex flex-col pt-6 px-6">
+                <div className={"flex justify-between bg-muted p-3 font-body text-xl"}>
                     <p>Total time:</p>
                     {(intervalLength + breakLength) * totalIntervals} mins
                 </div>
