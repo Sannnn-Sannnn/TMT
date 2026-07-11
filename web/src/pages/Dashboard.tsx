@@ -1,6 +1,6 @@
 import Header from "@/components/ui/Header.tsx";
 import TaskCard from "@/components/dashboard/TaskCard.tsx";
-import Timer from "@/components/dashboard/Timer.tsx";
+import TimerCard from "@/components/dashboard/TimerCard.tsx";
 
 const mockTasks = [
             "Revisar documentación de autenticación",
@@ -16,7 +16,7 @@ export default function Dashboard() {
             <Header/>
             <main className={"flex h-full w-full gap-x-5 p-5"}>
                 { /* Timer */}
-                <Timer />
+                <TimerCard />
 
                 { /* Today's tasks, overdue tasks */}
                 <TaskCard cat1={"overdue"} cat2={"today"} tasks={mockTasks}/>

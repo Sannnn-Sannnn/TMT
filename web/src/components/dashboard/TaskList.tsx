@@ -8,7 +8,7 @@ interface TaskListProps {
 
 export default function TaskList({ dueFor, tasks }: TaskListProps) {
     return (
-        <div className="flex flex-col gap-y-5">
+        <div className="flex flex-col gap-y-3">
             <TaskLabel dueFor={dueFor} />
             <div className={"flex flex-col gap-y-2"}>
                 {tasks.map((task) => (

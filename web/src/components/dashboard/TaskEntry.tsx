@@ -9,7 +9,7 @@ export default function TaskEntryProps ({ dueFor, task }: TaskEntryProps) {
     return (
         <div className={"flex items-center gap-x-2"}>
             <TaskBullet dueFor={dueFor} />
-            <p className={"text-2xl"}>
+            <p className={"text-xl"}>
                 {task}
             </p>
         </div>

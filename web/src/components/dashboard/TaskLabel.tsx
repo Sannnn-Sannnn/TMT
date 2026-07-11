@@ -18,7 +18,7 @@ export default function TaskLabel({ dueFor }: TaskLabelProps) {
     }
 
     return (
-        <div className={`w-3/8 p-4 pb-3 ${labelColour[dueFor]} font-heading font-medium text-4xl`}>
+        <div className={`w-3/8 p-2 pb-1 ${labelColour[dueFor]} font-heading font-medium text-2xl`}>
             { text[dueFor] }
         </div>
     )

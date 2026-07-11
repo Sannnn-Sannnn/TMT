@@ -9,7 +9,7 @@ interface TaskCardProps {
 
 export default function TaskCard ({ cat1, cat2, tasks }: TaskCardProps) {
     return (
-        <Card className={"flex flex-col flex-1 p-5 gap-y-15 border"}>
+        <Card className={"flex flex-col flex-1 p-5 gap-y-10 border"}>
             <TaskList dueFor={cat1} tasks={tasks}/>
             <TaskList dueFor={cat2} tasks={tasks}/>
         </Card>
