@@ -10,10 +10,10 @@ export const userController = {
             next(err);
         }
     },
-    async findByEmail(req: Request, res: Response, next: NextFunction) {
+    async login(req: Request, res: Response, next: NextFunction) {
         try {
-            const user = await userService.findByEmail(req.body.email);
-            res.status(200).json(user);
+            const userData = await userService.login(req.body);
+            res.status(200).json(userData);
         } catch (err) {
             next(err);
         }

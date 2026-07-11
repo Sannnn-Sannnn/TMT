@@ -11,9 +11,5 @@ export const loginSchema = z.object({
     password:z.string(),
 })
 
-export const findByEmailSchema = z.object({
-    email: z.email(),
-})
-
 export type CreateUserInput = z.infer<typeof createUserSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;

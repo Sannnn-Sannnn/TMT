@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { taskController } from "./task.controller.ts";
-import { requireAuth } from "../../middlewares/requireAuth.ts";
-import { validate } from "../../middlewares/validate.ts";
-import { createTaskSchema } from "./task.schema.ts";
+import { taskController } from "./task.controller.js";
+import { requireAuth } from "../../middlewares/requireAuth.js";
+import { validate } from "../../middlewares/validate.js";
+import { createTaskSchema } from "./task.schema.js";
 
 export const taskRouter = Router();
 
