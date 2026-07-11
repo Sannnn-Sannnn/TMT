@@ -10,12 +10,36 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
+  password  String
+  name      String
+  tasks     Task[]
+  templates Template[]
+}
+
+model Task {
+  id          Int @id @default(autoincrement())
+  description String
+  createdAt   DateTime @default(now())
+  dueFor      DateTime
+  done        Boolean @default(false)
+
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+}
+
+model Template {
+  id             Int @id @default(autoincrement())
+  label          String
+  intervalLength Int
+  breakLength    Int
+  totalIntervals Int
+  autoStart      Boolean @default(true)
+
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
 }
