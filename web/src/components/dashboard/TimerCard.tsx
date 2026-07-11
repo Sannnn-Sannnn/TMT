@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Timer from "@/components/dashboard/Timer.tsx";
-import { BookMarked } from "lucide-react";
 
 export default function TimerCard() {
     const [intervalLength, setIntervalLength] = useState(25);
