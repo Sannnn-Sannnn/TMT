@@ -15,9 +15,9 @@ export default function TaskList({ dueFor, tasks }: TaskListProps) {
     }
 
     return (
-        <div className="flex flex-col gap-y-3">
+        <div className="flex flex-col gap-y-2">
             <TaskLabel dueFor={dueFor} />
-            <div className={"flex flex-col gap-y-2"}>
+            <div className={"flex flex-col"}>
                 {tasks.map((task) => (
                     <TaskEntry dueFor={dueFor} task={task} done={done} onClick={toggleDone} />
                 ))}

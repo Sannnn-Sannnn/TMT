@@ -10,16 +10,16 @@ interface TaskEntryProps {
 export default function TaskEntryProps ({ dueFor, task, done, onClick }: TaskEntryProps) {
     return (
         <div
-            className={"flex items-center gap-x-2 px-2 hover:bg-muted hover:text-muted-foreground"}
+            className={"flex items-center gap-x-2 px-2 text-lg hover:bg-muted hover:text-muted-foreground"}
             onClick={onClick}
         >
             <TaskBullet dueFor={dueFor}/>
             {done ? (
-                <p className={"text-xl line-through"}>
+                <p className={"line-through"}>
                     {task}
                 </p>
             ) : (
-                <p className={"text-xl"}>
+                <p>
                     {task}
                 </p>
             )}
