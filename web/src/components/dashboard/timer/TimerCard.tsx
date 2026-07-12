@@ -1,8 +1,8 @@
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/ui/card.tsx";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import Timer from "@/components/dashboard/Timer.tsx";
-import TimerInputField from "@/components/dashboard/TimerInputField.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import Timer from "@/components/dashboard/timer/Timer.tsx";
+import TimerInputField from "@/components/dashboard/timer/TimerInputField.tsx";
 
 export default function TimerCard() {
     const [intervalLength, setIntervalLength] = useState(25);

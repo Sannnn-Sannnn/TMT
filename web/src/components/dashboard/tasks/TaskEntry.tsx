@@ -1,4 +1,4 @@
-import TaskBullet from "@/components/dashboard/TaskBullet.tsx";
+import TaskBullet from "@/components/dashboard/tasks/TaskBullet.tsx";
 
 interface TaskEntryProps {
     dueFor: "overdue" | "today" | "week" | "month"
@@ -7,7 +7,7 @@ interface TaskEntryProps {
     onClick: () => void
 }
 
-export default function TaskEntryProps ({ dueFor, task, done, onClick }: TaskEntryProps) {
+export default function TaskEntry ({ dueFor, task, done, onClick }: TaskEntryProps) {
     return (
         <div
             className={"flex items-center gap-x-2 px-2 text-lg hover:bg-muted hover:text-muted-foreground"}

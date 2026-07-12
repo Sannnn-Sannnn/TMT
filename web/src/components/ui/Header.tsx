@@ -6,7 +6,7 @@ export default function Header() {
     const { isDark, toggle } = useTheme();
 
     return (
-        <div className="flex items-center justify-between pl-10 pr-10 h-1/14 w-screen bg-primary">
+        <div className="flex items-center justify-between px-10 h-1/14 w-screen bg-primary">
             <div className={"font-heading font-medium text-primary-foreground text-4xl"}>
                 TMT
             </div>

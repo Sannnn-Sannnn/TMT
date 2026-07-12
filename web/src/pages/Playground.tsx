@@ -12,7 +12,7 @@ export default function Playground() {
             <main className={"flex h-full w-full gap-x-5 p-5"}>
 
                 { /* Components */ }
-                <Card className={"flex flex-col flex-1 p-5 gap-y-5 border"}>
+                <Card className={"flex flex-col p-5 gap-y-5 w-1/4 border"}>
                     <Button className={"font-body font-medium text-xl p-5"}>
                         Button
                     </Button>

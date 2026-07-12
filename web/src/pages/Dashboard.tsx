@@ -1,6 +1,6 @@
 import Header from "@/components/ui/Header.tsx";
-import TaskCard from "@/components/dashboard/TaskCard.tsx";
-import TimerCard from "@/components/dashboard/TimerCard.tsx";
+import TaskCard from "@/components/dashboard/tasks/TaskCard.tsx";
+import TimerCard from "@/components/dashboard/timer/TimerCard.tsx";
 
 const mockTasks = [
             "Revisar documentación de autenticación",
@@ -19,10 +19,10 @@ export default function Dashboard() {
                 <TimerCard />
 
                 { /* Today's tasks, overdue tasks */}
-                <TaskCard cat1={"overdue"} cat2={"today"} tasks={mockTasks}/>
+                <TaskCard cat1={"overdue"} cat2={"today"}/>
 
                 { /* This week's tasks, this month's tasks */}
-                <TaskCard cat1={"week"} cat2={"month"} tasks={mockTasks}/>
+                <TaskCard cat1={"week"} cat2={"month"}/>
             </main>
         </div>
     )
