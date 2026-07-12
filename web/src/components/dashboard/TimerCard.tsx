@@ -18,7 +18,7 @@ export default function TimerCard() {
     // to notice "nothing changed, but the clock should still go back to zero".
     const [sessionId, setSessionId] = useState(0);
 
-    const [autoStart, setAutoStart] = useState(false);
+    const [autoStart, setAutoStart] = useState(true);
 
     // true once the user has pressed Start at least once in this session;
     // resets on Reset. Used only to pick the button label.
