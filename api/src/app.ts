@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
 import { errorHandler } from "./middlewares/errorHandler.js";
-import {userRouter} from "./modules/user/user.routes.ts";
-import {taskRouter} from "./modules/task/task.routes.ts";
-import {env} from "./config/env.ts";
-import {dummyRouter} from "./modules/dummy/dummy.routes.ts";
+import {userRouter} from "./modules/user/user.routes.js";
+import {taskRouter} from "./modules/task/task.routes.js";
+import {env} from "./config/env.js";
+import {dummyRouter} from "./modules/dummy/dummy.routes.js";
 
 export const app = express();
 

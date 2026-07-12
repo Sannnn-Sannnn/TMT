@@ -13,12 +13,12 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  name      String
-  tasks     Task[]
-  templates Template[]
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+  name     String
+  tasks    Task[]
+  timers   Timer[]
 }
 
 model Task {
@@ -32,7 +32,7 @@ model Task {
   userId Int
 }
 
-model Template {
+model Timer {
   id             Int @id @default(autoincrement())
   label          String
   intervalLength Int
