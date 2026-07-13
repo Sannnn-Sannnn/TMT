@@ -1,9 +1,25 @@
 import { prisma } from "../../config/prisma.js";
 import {CreateTaskInput, UpdateTaskInput} from "./task.schema.js";
+import {Period} from "../../generated/prisma/enums.js";
+
+function computeDueDate(createdAt: Date, period: Period): Date {
+    if (period === 'today') {
+        return createdAt
+    } else if (period === 'week') {
+        const d = new Date(createdAt);
+        const day = d.getDay();
+        const diff = (6 - day + 7) % 7 || 7;
+        d.setDate(d.getDate() + diff);
+        return d;
+    } else {
+        return new Date(createdAt.getFullYear(), createdAt.getMonth() + 1, 0);
+    }
+}
 
 export const taskService = {
     async create(userId: number, data: CreateTaskInput) {
-        return prisma.task.create({data: {...data, userId}})
+        const dueFor = computeDueDate(new Date(), data.period)
+        return prisma.task.create({data: {...data, dueFor, userId}})
     },
     async get(taskId: number) {
         return prisma.task.findUnique({where: {id: taskId}})

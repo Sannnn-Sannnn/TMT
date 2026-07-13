@@ -1,14 +1,15 @@
 import { z } from "zod";
 
+const PeriodSchema = z.enum(['today', 'week', 'month']);
+
 export const createTaskSchema = z.object({
     description: z.string().min(1),
-    dueFor: z.coerce.date()
+    period: PeriodSchema
 })
 
 export const updateTaskSchema = z.object({
     description: z.string().optional(),
-    dueFor: z.coerce.date().optional(),
-    done: z.boolean().optional()
+    done: z.boolean().optional(),
 })
 
 export type CreateTaskInput = z.infer<typeof createTaskSchema>;

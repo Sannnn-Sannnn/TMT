@@ -9,5 +9,5 @@ export const taskRouter = Router();
 taskRouter.use(requireAuth);
 taskRouter.post("/", validate(createTaskSchema), taskController.create);
 taskRouter.get("/", taskController.findAll);
-taskRouter.put("/:taskId", validate(updateTaskSchema), taskController.update);
+taskRouter.patch("/:taskId", validate(updateTaskSchema), taskController.update);
 taskRouter.delete("/:taskId", taskController.delete);

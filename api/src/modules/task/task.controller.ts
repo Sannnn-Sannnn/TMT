@@ -20,10 +20,14 @@ export const taskController = {
     },
     async update(req: Request, res: Response, next: NextFunction) {
         try {
+            const userId = req.userId!;
             const taskId = Number(req.params.taskId);
             const task = await taskService.get(taskId);
             if (!task) {
                 return res.status(404).json({err: "Task Not Found"})
+            }
+            if (userId !== task.userId) {
+                return res.status(401).json({err: "Task Not Found"})
             }
             const newTask = await taskService.update(taskId, req.body);
             res.status(200).json(newTask);
@@ -33,10 +37,14 @@ export const taskController = {
     },
     async delete(req: Request, res: Response, next: NextFunction) {
         try {
+            const userId = req.userId!
             const taskId = Number(req.params.taskId)
             const task = await taskService.get(taskId);
             if (!task) {
                 return res.status(404).json({err: "Task Not Found"})
+            }
+            if (userId !== task.userId) {
+                return res.status(401).json({err: "Task Not Found"})
             }
             const data = await taskService.delete(taskId)
             res.status(200).json(data);
