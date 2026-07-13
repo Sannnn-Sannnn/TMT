@@ -15,7 +15,7 @@
   --border: oklch(0.732 0 0);
 
   /* Tiempos */
-  --today: oklch(0.6835 0.0996 209.7);
+  --today: oklch(0.794 0.108 208.869);
   --today-foreground: var(--color-foreground);
   --week: oklch(0.7181 0.112 139.02);
   --week-foreground: var(--color-foreground);
@@ -25,13 +25,14 @@
   --overdue-foreground: var(--color-foreground);
 
   /* Branding */
-  --primary: var(--today);
+  /* --primary: var(--today); */
+  --primary: oklch(0.49 0.106 236.468);
   --primary-foreground: var(--today-foreground);
   --secondary: var(--week);
   --secondary-foreground: var(--week-foreground);
   --muted: oklch(0.9227 0.0137 145.46);
   --muted-foreground: var(--foreground);
-  --accent: oklch(0.7948 0.1144 209.53);
+  --accent: var(--today);
   --accent-foreground: var(--foreground);
 
   --destructive: var(--overdue);
@@ -92,8 +93,6 @@
   --color-foreground: var(--foreground);
   --color-border: var(--border);
 
-  --color-today-dark: var(--today-dark);
-  --color-today-dark-foreground: var(--today-dark-foreground);
   --color-today: var(--today);
   --color-today-foreground: var(--today-foreground);
   --color-week: var(--week);

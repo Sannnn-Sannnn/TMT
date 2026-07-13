@@ -1,8 +1,8 @@
 interface TaskLabelProps {
-    dueFor: "overdue" | "today" | "week" | "month"
+    period: "overdue" | "today" | "week" | "month"
 }
 
-export default function TaskLabel({ dueFor }: TaskLabelProps) {
+export default function TaskLabel({ period }: TaskLabelProps) {
     const text = {
         overdue: "Overdue:",
         today:   "Today's tasks:",
@@ -18,8 +18,8 @@ export default function TaskLabel({ dueFor }: TaskLabelProps) {
     }
 
     return (
-        <div className={`w-3/8 p-2 pb-1 ${labelColour[dueFor]} font-heading font-medium text-2xl`}>
-            { text[dueFor] }
+        <div className={`w-3/8 p-2 pb-1 ${labelColour[period]} font-heading font-medium text-2xl`}>
+            { text[period] }
         </div>
     )
 }

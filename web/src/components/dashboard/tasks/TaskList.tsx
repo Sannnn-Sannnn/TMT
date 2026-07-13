@@ -1,61 +1,41 @@
-import TaskLabel from "@/components/dashboard/tasks/TaskLabel.tsx";
-import {useTasks} from "@/hooks/useTasks.ts";
+import TaskLabel from "@/components/dashboard/tasks/TaskLabel";
+import {EmptyTaskEntry, TaskEntry} from "@/components/dashboard/tasks/TaskEntry.tsx";
 import type {Task} from "@/types/api.ts";
 
 interface TaskListProps {
-    dueFor: "overdue" | "today" | "week" | "month"
+    period: "overdue" | "today" | "week" | "month"
+    tasks: Task[]
+    loading: boolean
+    onClick: (id: number, done: boolean) => void
 }
 
-interface TaskBulletProps {
-    dueFor: "overdue" | "today" | "week" | "month"
-}
-
-function TaskBullet ({ dueFor }: TaskBulletProps) {
-    const colour = {
-        overdue: "bg-overdue",
-        today: "bg-today",
-        week: "bg-week",
-        month: "bg-month",
-    }
-    return <div className={`aspect-square w-2 ${colour[dueFor]} rounded-full`}/>
-}
-
-interface TaskEntryProps {
-    dueFor: "overdue" | "today" | "week" | "month"
-    task: string | null
-    done: boolean
-    onClick: () => void
-}
-
-function TaskEntry ({ dueFor, task, done, onClick }: TaskEntryProps) {
-    return (
-        <div
-            className={"flex items-center gap-x-2 px-2 text-lg hover:bg-muted hover:text-muted-foreground"}
-            onClick={onClick}
-        >
-            <TaskBullet dueFor={dueFor}/>
-            {done ? (<p className={"line-through"}>{task}</p>) : (<p>{task}</p>)}
-        </div>
-    )
-}
-
-export default function TaskList({dueFor}: TaskListProps) {
-    const { tasks, loading } = useTasks();
+export default function TaskList({period, tasks, loading, onClick}: TaskListProps) {
     if (loading) return;
 
-    function toggleDone(task: Task) {
-        task.done = !task.done;
-    }
+    if (period == "overdue" && tasks.length === 0) {return;}
 
     return (
         <div className="flex flex-col gap-y-2">
-            <TaskLabel dueFor={dueFor} />
-
-            <ul>{tasks.map(t =>
-                <li key={t.id}>
-                    <TaskEntry dueFor={dueFor} task={t.description} done={t.done} onClick={() => toggleDone(t)} />
-                </li>
-            )}</ul>
+            <TaskLabel period={period}/>
+            <div>
+                {tasks.length === 0 && period !== "overdue" ? (
+                    <EmptyTaskEntry period={period} />
+                ) : (
+                    <ul>{tasks.map(t =>
+                        <li key={t.id}>
+                            <TaskEntry
+                                period={period}
+                                task={t.description}
+                                done={t.done}
+                                onClick={() => {
+                                    onClick(t.id, t.done)
+                                }}
+                            />
+                        </li>
+                    )}</ul>
+                )
+                }
+            </div>
         </div>
     )
 }

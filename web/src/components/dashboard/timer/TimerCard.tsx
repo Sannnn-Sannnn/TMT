@@ -103,9 +103,9 @@ export default function TimerCard() {
 
                 <div className={"flex items-center gap-x-2"}>
                     {autoStart ? (
-                        <div className="flex items-center justify-center aspect-square h-6 border-3 border-primary"
+                        <div className="flex items-center justify-center aspect-square h-6 border-3 border-accent"
                              onClick={() => setAutoStart(false)}>
-                            <div className="flex flex-1 aspect-square bg-primary border-3 border-card"/>
+                            <div className="flex flex-1 aspect-square bg-accent border-3 border-card"/>
                         </div>
                     ) : (
                         <div className="aspect-square h-6 border-3 border-border" onClick={() => setAutoStart(true)}/>

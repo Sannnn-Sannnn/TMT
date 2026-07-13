@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { getTasks } from "../api/tasks";
-import type { Task } from "../types/api";
+import {getTasks, updateTask, createTask} from "../api/tasks";
+import type {Period, Task} from "../types/api";
 
 export function useTasks() {
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -12,5 +12,19 @@ export function useTasks() {
             .finally(() => setLoading(false));
     }, []);
 
-    return { tasks, loading };
+    async function toggleDone(taskId: number, currentDone: boolean) {
+        const updatedTask = await updateTask(taskId, { done: !currentDone });
+        setTasks(prev =>
+            prev.map(t => (t.id === taskId ? updatedTask : t))
+        );
+    }
+
+    async function createNewTask(
+        task: { description: string; period: Period}
+    ) {
+        const newTask = await createTask(task);
+        setTasks(prev => [...prev, newTask]);
+    }
+
+    return { tasks, loading, toggleDone, createNewTask };
 }
