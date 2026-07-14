@@ -124,13 +124,13 @@ export default function TimerCard() {
 
             <div className={"flex items-end w-full h-full px-6 gap-x-3"}>
                 <Button
-                    className={"flex flex-1 h-1/2 p-4 text-2xl font-medium font-heading"}
+                    className={"h-15 flex flex-1 p-4 text-2xl font-medium font-heading"}
                     onClick={handleStartStop}
                 >
                     {isRunning ? "Pause" : hasStarted ? "Continue" : "Start"}
                 </Button>
                 <Button
-                    className={"h-1/2 p-5 text-2xl font-medium font-heading bg-secondary text-secondary-foreground"}
+                    className={"h-15 p-4 text-2xl font-medium font-heading bg-accent hover:bg-accent/80 text-accent-foreground"}
                     onClick={handleReset}
                 >
                     Reset

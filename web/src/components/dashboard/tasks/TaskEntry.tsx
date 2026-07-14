@@ -53,7 +53,7 @@ export function EmptyTaskEntry ({ period }: NewTaskEntryProps) {
     }
     return (
         <div
-            className={"flex items-center gap-x-2 px-2 text-lg hover:bg-muted hover:text-muted-foreground"}
+            className={"flex items-center gap-x-2 px-2 text-lg"}
         >
             <NewTaskBullet period={period}/>
             {message[period]}
