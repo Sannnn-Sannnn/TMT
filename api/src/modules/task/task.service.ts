@@ -4,7 +4,9 @@ import {Period} from "../../generated/prisma/enums.js";
 
 function computeDueDate(createdAt: Date, period: Period): Date {
     if (period === 'today') {
-        return createdAt
+        const d = new Date();
+        d.setDate(d.getDate() + 1)
+        return d
     } else if (period === 'week') {
         const d = new Date(createdAt);
         const day = d.getDay();
