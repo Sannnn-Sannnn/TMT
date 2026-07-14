@@ -12,3 +12,7 @@ export function createTask(data: { description: string; period: Period}): Promis
 export function updateTask(taskId: number, data: { description?: string; done?: boolean }): Promise<Task> {
     return apiFetch(`/tasks/${taskId}`, { method: "PATCH", body: JSON.stringify(data) });
 }
+
+export function deleteTask(taskId: number): Promise<Task> {
+    return apiFetch(`/tasks/${taskId}`, { method: "DELETE" });
+}

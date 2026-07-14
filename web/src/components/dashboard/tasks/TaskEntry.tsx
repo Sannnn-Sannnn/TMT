@@ -1,3 +1,15 @@
+import {EllipsisVertical, Pencil, Trash2} from "lucide-react"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import type {Task} from "@/types/api.ts";
+import {useState} from "react";
+import {TaskEditDialog} from "@/components/dashboard/tasks/TaskEditDialog.tsx";
+import {DeleteTaskDialog} from "@/components/dashboard/tasks/DeleteDialog.tsx";
+
 interface TaskBulletProps {
     period: "overdue" | "today" | "week" | "month"
 }
@@ -12,21 +24,86 @@ function TaskBullet ({ period }: TaskBulletProps) {
     return <div className={`aspect-square w-2 ${colour[period]} rounded-full`}/>
 }
 
-interface TaskEntryProps {
-    period: "overdue" | "today" | "week" | "month"
-    task: string | null
-    done: boolean
-    onClick: () => void
+interface DropdownMenuIconsProps {
+    onEdit: () => void;
+    onDelete: () => void;
 }
 
-export function TaskEntry ({ period, task, done, onClick }: TaskEntryProps) {
+export function DropdownMenuIcons({ onEdit, onDelete }: DropdownMenuIconsProps) {
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger
+                render={<EllipsisVertical/>}
+            />
+            <DropdownMenuContent className={"bg-card shadow-none border ring-0"}>
+                <DropdownMenuItem
+                    onClick={(e) => {
+                        e.preventDefault();
+                        onEdit();
+                    }}
+                >
+                    <Pencil/>
+                    Edit
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                    variant="destructive"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        onDelete();
+                    }}
+                >
+                    <Trash2/>
+                    Delete
+                </DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    );
+}
+
+function isOverdue(task: Task) {
+    return new Date(task.dueFor) < new Date()
+}
+
+interface TaskEntryProps {
+    task: Task;
+    onClick: () => void;
+    onEdit: (id: number, values: string) => void | Promise<void>;
+    onDelete: (id: number) => void | Promise<void>;
+}
+
+export function TaskEntry ({task, onClick, onEdit, onDelete }: TaskEntryProps) {
+    const [editOpen, setEditOpen] = useState(false);
+    const [deleteOpen, setDeleteOpen] = useState(false);
+    const period = isOverdue(task) ? "overdue" : task.period;
+
     return (
         <div
             className={"flex items-center gap-x-2 px-2 text-lg hover:bg-muted hover:text-muted-foreground"}
-            onClick={onClick}
         >
             <TaskBullet period={period}/>
-            {done ? (<p className={"line-through"}>{task}</p>) : (<p>{task}</p>)}
+            <div className={`flex flex-1 ${task.done ? "line-through" : ""}`} onClick={onClick}>
+                {task.description}
+            </div>
+                <DropdownMenuIcons onEdit={() => {
+                    setEditOpen(true)
+                }} onDelete={() => {
+                    setDeleteOpen(true)
+                }}/>
+
+            <TaskEditDialog
+                open={editOpen}
+                onOpenChange={setEditOpen}
+                initialValues={task.description}
+                onSubmit={(values) => onEdit(task.id, values)}
+            />
+
+            <DeleteTaskDialog
+                open={deleteOpen}
+                onOpenChange={setDeleteOpen}
+                taskDescription={task.description}
+                onConfirm={() => onDelete(task.id)}
+            />
+
         </div>
     )
 }

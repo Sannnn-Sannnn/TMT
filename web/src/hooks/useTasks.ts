@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {getTasks, updateTask, createTask} from "../api/tasks";
+import {getTasks, updateTask, createTask, deleteTask} from "../api/tasks";
 import type {Period, Task} from "../types/api";
 
 export function useTasks() {
@@ -26,5 +26,19 @@ export function useTasks() {
         setTasks(prev => [...prev, newTask]);
     }
 
-    return { tasks, loading, toggleDone, createNewTask };
+    async function updateTaskDescription(taskId: number, description: string) {
+        const updatedTask = await updateTask(taskId, { description });
+        setTasks(prev =>
+            prev.map(t => (t.id === taskId ? updatedTask : t))
+        );
+    }
+
+    async function removeTask(taskId: number) {
+        const deletedTask = await deleteTask(taskId);
+        setTasks(prev =>
+            prev.filter(task => task.id !== taskId)
+        );
+    }
+
+    return { tasks, loading, toggleDone, createNewTask, updateTaskDescription, removeTask };
 }
