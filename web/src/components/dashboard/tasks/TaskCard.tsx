@@ -10,7 +10,7 @@ function isOverdue(task: Task) {
 
 export function TaskCard () {
     const {tasks, loading, toggleDone, createNewTask, updateTaskDescription, removeTask} = useTasks();
-    // const overdueTasks = tasks.filter(task => isOverdue(task));
+    const overdueTasks = tasks.filter(task => isOverdue(task));
     const todayTasks = tasks.filter(task => task.period === "today" && !isOverdue(task));
     const weekTasks = tasks.filter(task => task.period === "week" && !isOverdue(task));
     const monthTasks = tasks.filter(task => task.period === "month" && !isOverdue(task));
@@ -18,9 +18,6 @@ export function TaskCard () {
     async function handleCreate(name: string, period: Period) {
         await createNewTask({description: name, period});
     }
-
-    const test = false
-    const overdueTasks = test ? [] : tasks.filter(task => isOverdue(task));
 
     return (
         <div className={"flex flex-row w-3/4 gap-x-5"}>

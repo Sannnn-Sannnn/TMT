@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card.tsx";
-import { useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import { Button } from "@/components/ui/button.tsx";
 import Timer from "@/components/dashboard/timer/Timer.tsx";
 import TimerInputField from "@/components/dashboard/timer/TimerInputField.tsx";
@@ -17,12 +17,35 @@ export default function TimerCard() {
     const [autoStart, setAutoStart] = useState(true);
     const [hasStarted, setHasStarted] = useState(false);
 
-    function handleComplete() {
-        const alarm = new Audio("/alarm.mp3");
+    const alarmSource = ""
+    const alarmRef = useRef<HTMLAudioElement | null>(null);
+    if (alarmRef.current === null) {
+        alarmRef.current = new Audio(alarmSource)
+    }
+
+    function stopAlarm() {
+        const alarm = alarmRef.current;
+        if (!alarm) return;
+        alarm.pause();
+        alarm.currentTime = 0;
+    }
+
+    function playAlarm() {
+        const alarm = alarmRef.current;
+        if (!alarm) return;
+        alarm.currentTime = 0;
         alarm.play().catch(() => {
-            // playback can be blocked until the user interacts with the page;
-            // fail silently rather than throwing
+            alarm.loop = true
         });
+    }
+
+    useEffect(() => {
+        return () => stopAlarm();
+    }, []);
+
+
+    function handleComplete() {
+        playAlarm()
 
         if (currentStatus === "Interval") {
             if (currentInterval >= totalIntervals) {
@@ -41,24 +64,18 @@ export default function TimerCard() {
     }
 
     function handleStartStop() {
+        stopAlarm();
         setIsRunning((r) => !r);
         setHasStarted(true);
     }
 
     function handleReset() {
+        stopAlarm();
         setIsRunning(false);
         setCurrentInterval(1);
         setCurrentStatus("Interval");
         setSessionId((id) => id + 1);
         setHasStarted(false);
-    }
-
-    if (false) {
-        return (
-            <Card className={"flex flex-col w-1/4 p-5 border"}>
-
-            </Card>
-        )
     }
 
     return (
