@@ -4,7 +4,10 @@ import { Input } from "@/components/ui/input.tsx";
 
 import Header from "@/components/ui/Header.tsx";
 
+const SHOW_PLAYGROUND = false
+
 export default function Playground() {
+    if (!SHOW_PLAYGROUND) return null
 
     return (
         <div className="flex flex-col h-screen w-screen">
