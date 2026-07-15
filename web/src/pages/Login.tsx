@@ -6,7 +6,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {useUser} from "../hooks/useUser";
 import {useNavigate} from "react-router-dom";
 
-export function Login() {
+export default function Login() {
     const [mode, setMode] = useState<"login" | "register">("login")
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");

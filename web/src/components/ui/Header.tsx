@@ -20,7 +20,7 @@ export default function Header() {
 
     async function logout() {
         await userLogout();
-        navigate("/login");
+        navigate("/");
     }
 
     if (user === undefined) {
