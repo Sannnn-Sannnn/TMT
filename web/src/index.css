@@ -27,6 +27,7 @@
   /* Branding */
   --primary: oklch(0.49 0.106 236.468);
   --primary-foreground: var(--today-foreground);
+  --primary-hover: oklch(0.58 0.091 230.507);
   --secondary: var(--week);
   --secondary-foreground: var(--week-foreground);
   --muted: oklch(0.9227 0.0137 145.46);
@@ -67,6 +68,7 @@
   /* Branding */
   --primary: oklch(0.49 0.106 236.468);
   --primary-foreground: var(--today-foreground);
+  --primary-hover: oklch(0.58 0.091 230.507);
   --secondary: var(--week);
   --secondary-foreground: var(--week-foreground);
   --muted: oklch(0.3686 0.0095 164.45);
@@ -104,6 +106,7 @@
 
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);

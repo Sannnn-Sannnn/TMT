@@ -34,7 +34,7 @@ export function useTasks() {
     }
 
     async function removeTask(taskId: number) {
-        const deletedTask = await deleteTask(taskId);
+        await deleteTask(taskId);
         setTasks(prev =>
             prev.filter(task => task.id !== taskId)
         );

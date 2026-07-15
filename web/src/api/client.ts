@@ -15,5 +15,8 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
     });
 
     if (!res.ok) throw new Error(`Error ${res.status} - ${res.statusText}`);
+    if (res.status === 204 || res.status === 205) {
+        return undefined;
+    }
     return res.json();
 }
