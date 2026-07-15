@@ -10,7 +10,6 @@ import {useUser} from "@/hooks/useUser.ts";
 import {useState} from "react";
 import {LogoutDialog} from "@/components/ui/LogoutDialog.tsx";
 import {useNavigate} from "react-router-dom";
-import {getToken} from "@/api/authStorage.ts";
 
 export default function Header() {
     const [logoutIsOpen, setLogoutIsOpen] = useState(false);
