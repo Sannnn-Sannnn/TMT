@@ -1,7 +1,12 @@
 export interface User {
     id: number
     email: string
-    name: string
+    //name: string
+}
+
+export interface LoginResponse {
+    user: User,
+    token: string
 }
 
 export type Period = "today" | "week" | "month";
@@ -13,9 +18,4 @@ export interface Task {
     dueFor: string
     period: Period,
     done: boolean,
-}
-
-export interface LoginResponse {
-    user: User
-    token: string
 }

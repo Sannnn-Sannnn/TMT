@@ -1,17 +1,18 @@
-import type {LoginResponse} from "@/types/api.ts";
+import type {LoginResponse, User} from "@/types/api.ts";
+import {apiFetch} from "@/api/client.ts";
 
-const API_URL = import.meta.env.VITE_API_URL;
+export function login(email: string, password: string): Promise<LoginResponse> {
+    return apiFetch(`/users/login`, {method: "POST", body: JSON.stringify({email, password})});
+}
 
-export async function login(email: string, password: string): Promise<LoginResponse> {
-    const res = await fetch(`${API_URL}/users/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-    });
+export function register(email: string, password: string):Promise<LoginResponse> {
+    return apiFetch(`/users/register`, {method: "POST", body: JSON.stringify({email, password})});
+}
 
-    if (!res.ok) {
-        throw new Error("Invalid credentials");
-    }
+export function logout(): Promise<void> {
+    return apiFetch("/users/logout", {method: "POST"})
+}
 
-    return res.json();
+export async function getCurrentUser(): Promise<User | null> {
+    return await apiFetch("/users/current", {method: "GET"});
 }

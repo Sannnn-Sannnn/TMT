@@ -41,7 +41,7 @@ export function TaskCard () {
             </Card>
 
             { /* This week's tasks, this month's tasks */}
-            <Card className={"flex flex-col w-1/2 p-5 gap-y-10 border bg-"}>
+            <Card className={"flex flex-col w-1/2 p-5 gap-y-10 border"}>
                 <div className={"h-1/3"}>
                     <TaskList period={"week"} tasks={weekTasks} loading={loading} onClick={toggleDone}
                               onEdit={updateTaskDescription} onDelete={removeTask}/>

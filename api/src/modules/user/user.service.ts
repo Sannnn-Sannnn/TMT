@@ -1,15 +1,26 @@
 import bcrypt from "bcrypt";
-import { prisma } from "../../config/prisma.js";
+import {prisma} from "../../config/prisma.js";
 import {CreateUserInput, LoginInput} from "./user.schema.js";
 import jwt from "jsonwebtoken";
+
+let blacklist: string[] = []
+
+function tokenIsValid(token: string) {
+    try {
+        jwt.verify(token, process.env.JWT_SECRET!);
+        return true
+    } catch {
+        return false;
+    }
+}
 
 export const userService = {
     async create(data: CreateUserInput) {
         const hashedPassword = await bcrypt.hash(data.password, 12);
         const user = await prisma.user.create({data: {...data, password: hashedPassword}});
         const {password, ...safeUser} = user;
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET!, { expiresIn: "30d" })
-        return { user: safeUser, token: token };
+        const token = jwt.sign({id: user.id}, process.env.JWT_SECRET!, {expiresIn: "30d"})
+        return {user: safeUser, token: token};
     },
     async login(data: LoginInput) {
         const user = await prisma.user.findUnique({where: {email: data.email}});
@@ -19,5 +30,24 @@ export const userService = {
         const {password, ...safeUser} = user;
         const token = jwt.sign({id: user.id}, process.env.JWT_SECRET!, {expiresIn: "30d"})
         return {user: safeUser, token: token};
+    },
+    async logout(token: string) {
+        blacklist.push(token)
+        blacklist = blacklist.filter(t => tokenIsValid(t));
+    },
+    async findByToken(token: string, userId: number) {
+        const user = await prisma.user.findUnique({where: {id: userId}});
+        if (!user || blacklist.includes(token)) throw new Error("Invalid user");
+        const {password, ...safeUser} = user;
+        return safeUser
+    },
+    async getAll() {
+        return prisma.user.findMany({
+            select: {
+                id: true,
+                email: true,
+                password: false,
+            }
+        });
     }
 };
