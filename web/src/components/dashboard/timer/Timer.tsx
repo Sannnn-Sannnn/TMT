@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 interface TimerProps {
-    intervalLength: number; // in minutes
-    breakLength: number;    // in minutes
+    intervalLength: number;
+    breakLength: number;
     totalIntervals: number;
     currentInterval: number;
     currentStatus: "Interval" | "Break";
@@ -46,26 +46,25 @@ export default function Timer({
         if (!isRunning) return;
 
         const id = setInterval(() => {
-            setSecondsLeft((prev) => {
-                if (prev <= 1) {
-                    onCompleteRef.current();
-                    return 0;
-                }
-                return prev - 1;
-            });
+            setSecondsLeft((prev) => (prev <= 1 ? 0 : prev - 1));
         }, 1000);
 
         return () => clearInterval(id);
     }, [isRunning]);
 
-    const progress = duration > 0 ? 1 - secondsLeft / duration : 0; // 0 -> 1
-    const dashOffset = CIRCUMFERENCE * progress;
+    useEffect(() => {
+        if (isRunning && secondsLeft === 0) {
+            onCompleteRef.current()
+        }
+    }, [secondsLeft, isRunning])
+
+    const filled = duration > 0 ? secondsLeft / duration : 0;
+    const dashOffset = CIRCUMFERENCE * filled;
 
     return (
         <div className="flex flex-col items-center gap-y-4">
             <div className="relative flex items-center justify-center aspect-square w-2/3">
                 <svg viewBox="0 0 200 200" className="w-full h-full -rotate-90">
-                    {/* track */}
                     <circle
                         cx="100"
                         cy="100"
@@ -73,7 +72,6 @@ export default function Timer({
                         strokeWidth={STROKE_WIDTH}
                         className="fill-none stroke-primary"
                     />
-                    {/* progress, drains clockwise from full to empty */}
                     <circle
                         cx="100"
                         cy="100"
@@ -82,7 +80,7 @@ export default function Timer({
                         strokeLinecap="butt"
                         strokeDasharray={CIRCUMFERENCE}
                         strokeDashoffset={dashOffset}
-                        className="fill-none stroke-accent transition-[stroke-dashoffset] duration-1000 ease-linear"
+                        className={`fill-none stroke-accent transition-[stroke-dashoffset] duration-1000 ease-linear`}
                     />
                 </svg>
 

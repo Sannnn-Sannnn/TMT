@@ -17,7 +17,7 @@ export default function TimerCard() {
     const [autoStart, setAutoStart] = useState(true);
     const [hasStarted, setHasStarted] = useState(false);
 
-    const alarmSource = ""
+    const alarmSource = "/sounds/alarm.mp3"
     const alarmRef = useRef<HTMLAudioElement | null>(null);
     if (alarmRef.current === null) {
         alarmRef.current = new Audio(alarmSource)
@@ -49,7 +49,11 @@ export default function TimerCard() {
 
         if (currentStatus === "Interval") {
             if (currentInterval >= totalIntervals) {
+                setCurrentInterval(1);
                 setIsRunning(false);
+                setCurrentStatus("Interval");
+                setSessionId(id => id + 1);
+                setHasStarted(false);
                 return;
             }
             setCurrentStatus("Break");
