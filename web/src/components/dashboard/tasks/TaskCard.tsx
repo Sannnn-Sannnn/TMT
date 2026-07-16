@@ -16,7 +16,7 @@ export function TaskCard () {
     const monthTasks = tasks.filter(task => task.period === "month" && !isOverdue(task));
 
     async function handleCreate(name: string, period: Period) {
-        await createNewTask({description: name, period});
+        await createNewTask({description: name, period: period});
     }
 
     return (

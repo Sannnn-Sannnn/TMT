@@ -10,15 +10,16 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import {useState} from "react";
+import type {Period} from "@/types/api.ts";
 
 interface NewTaskFormProps {
-    onCreate: (name: string, period: string) => void | Promise<void>;
+    onCreate: (name: string, period: Period) => Promise<void>;
 }
 
 export function NewTaskForm({ onCreate }: NewTaskFormProps) {
     const [open, setOpen] = useState(false);
     const [newTaskName, setNewTaskName] = useState("");
-    const [newPeriod, setNewPeriod] = useState("");
+    const [newPeriod, setNewPeriod] = useState<Period>("today");
 
     const dueForOptions = [
         {label: "Today", value: "today"},
@@ -28,7 +29,7 @@ export function NewTaskForm({ onCreate }: NewTaskFormProps) {
 
     function resetForm() {
         setNewTaskName("");
-        setNewPeriod("");
+        setNewPeriod("today");
     }
 
     function handleOpenChange(nextOpen: boolean) {
@@ -70,7 +71,9 @@ export function NewTaskForm({ onCreate }: NewTaskFormProps) {
 
                     <div className={"flex flex-col w-full"}>
                         Due for:
-                        <Select value={newPeriod} onValueChange={setNewPeriod} items={dueForOptions}>
+                        <Select value={newPeriod} onValueChange={(value) => {
+                            if (value) setNewPeriod(value);
+                        }} items={dueForOptions}>
                             <SelectTrigger className={"flex w-full"}>
                                 <SelectValue placeholder="Due for" className={"flex flex-1"} />
                             </SelectTrigger>
