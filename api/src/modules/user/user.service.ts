@@ -3,6 +3,8 @@ import {prisma} from "../../config/prisma.js";
 import {CreateUserInput, LoginInput} from "./user.schema.js";
 import jwt from "jsonwebtoken";
 
+const ALLOW_GET_ALL = false
+
 let blacklist: string[] = []
 
 function tokenIsValid(token: string) {
@@ -42,12 +44,16 @@ export const userService = {
         return safeUser
     },
     async getAll() {
-        return prisma.user.findMany({
-            select: {
-                id: true,
-                email: true,
-                password: false,
-            }
-        });
+        if (ALLOW_GET_ALL) {
+            return prisma.user.findMany({
+                select: {
+                    id: true,
+                    email: true,
+                    password: false,
+                }
+            });
+        } else {
+            return [];
+        }
     }
 };
